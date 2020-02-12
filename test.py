@@ -26,8 +26,8 @@ one_hot_key = {
 def test():
     
     network = SimpleConvNet(input_dim=(3,128,128), 
-                            conv_param = {'filter_num': 30, 'filter_size': 3, 'pad': 0, 'stride': 1},
-                            hidden_size=100, output_size=12, weight_init_std=0.01)
+                        conv_param = {'filter_num': [32,32], 'filter_size': [3,3], 'pad': [1,1], 'stride': [1,1]},
+                        hidden_size=100, output_size=12, weight_init_std=0.01)
 
     network.load_params("params.pkl")
 
