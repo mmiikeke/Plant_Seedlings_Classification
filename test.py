@@ -9,7 +9,7 @@ def test():
         transforms.Normalize(mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225])
     ])
     
-    root_dir = "/kaggle/input/plant-seedlings-classification/train"
+    root_dir = "plant-seedlings-classification/train"
     i = 0
     for f in listdir(root_dir):
         one_hot_key[i] = f
@@ -19,12 +19,12 @@ def test():
     model = model.cuda(CUDA_DEVICES)
     model.eval()
 
-    sample_submission = pd.read_csv('/kaggle/input/plant-seedlings-classification/sample_submission.csv')
+    sample_submission = pd.read_csv('plant-seedlings-classification/sample_submission.csv')
     submission = sample_submission.copy()
     
     for i, filename in enumerate(sample_submission['file']):
         print(filename)
-        image = Image.open(join('/kaggle/input/plant-seedlings-classification/test', filename)).convert('RGB')
+        image = Image.open(join('plant-seedlings-classification/test', filename)).convert('RGB')
         image = data_transform(image).unsqueeze(0)
         inputs = Variable(image.cuda(CUDA_DEVICES))
         outputs = model(inputs)
